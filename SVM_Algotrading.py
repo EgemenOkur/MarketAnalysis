@@ -10,34 +10,30 @@ from pandas_datareader import data
 
 # Only get the adjusted close.
 df = data.DataReader("AAPL",
-                       start='2020-1-1',
+                       start='2010-1-1',
                        end='2021-12-31',
                        data_source='yahoo')
 
 
 
 # saving the dataframe
-df.to_csv('BANKING_STOCK.csv')
+df.to_csv('AAPL.csv')
 
 # To plot
 import matplotlib.pyplot as plt
-
 plt.style.use('seaborn-darkgrid')
 
 # To ignore warnings
 import warnings
-
 warnings.filterwarnings("ignore")
 
-
-df = pd.read_csv('BANKING_STOCK.csv')
-
+#df = pd.read_csv('BANKING_STOCK.csv')
 # Read the csv file using read_csv
 # method of pandas
 # Changes The Date column as index columns
-df.index = pd.to_datetime(df['Date'])
+#df.index = pd.to_datetime(df['Date'])
 # drop The original date column
-df = df.drop(['Date'], axis='columns')
+#df = df.drop(['Date'], axis='columns')
 
 # Create predictor variables
 df['Open-Close'] = df.Open - df.Close
