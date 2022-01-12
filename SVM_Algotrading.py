@@ -9,9 +9,9 @@ import numpy as np
 from pandas_datareader import data
 
 # Only get the adjusted close.
-df = data.DataReader("AAPL",
-                       start='2010-1-1',
-                       end='2021-12-31',
+df = data.DataReader("U",
+                       start='2019-12-1',
+                       end='2022-01-10',
                        data_source='yahoo')
 
 
@@ -79,3 +79,5 @@ plt.plot(df['Cum_Ret'],color='red')
 plt.plot(df['Cum_Strategy'],color='blue')
 plt.show()
 
+
+#print(accuracy_score(y_test, X_test))
