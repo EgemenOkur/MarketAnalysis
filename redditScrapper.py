@@ -1,6 +1,9 @@
 import praw
 import pandas as pd
 import datetime
+import arxiv
+
+
 # Define user agent
 user_agent = "praw_scraper_1.0"
 
@@ -44,4 +47,25 @@ df['post'] = url
 df['date'] = date
 
 
+
 print(df.head(100))
+
+import arxivscraper
+scraper = arxivscraper.Scraper(category='physics:cond-mat', date_from='2017-05-27',date_until='2017-06-07')
+output = scraper.scrape()
+import pandas as pd
+cols = ('id', 'title', 'categories', 'abstract', 'doi', 'created', 'updated', 'authors')
+df = pd.DataFrame(output,columns=cols)
+
+
+search = arxiv.Search(
+    query="healthcare AND \"machine learning\"",
+    max_results=3,
+    sort_by=arxiv.SortCriterion.SubmittedDate,
+    sort_order=arxiv.SortOrder.Descending
+)
+
+for result in search.results():
+    print('Title: ', result.title, '\nDate: ', result.published, '\nId: ', result.entry_id, '\nSummary: ',
+          result.summary, '\nURL: ', result.pdf_url, '\n\n')
+
